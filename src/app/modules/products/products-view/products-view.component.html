@@ -1,0 +1,54 @@
+<div class="container">
+  <div *ngIf="isLoading" class="loader">
+    <mat-spinner strokeWidth="10"></mat-spinner>
+    <p class="loader-text">Loading products...</p>
+  </div>
+
+  <div class="wrapper d-flex" *ngIf="!isLoading && allProducts && allProducts.length > 0">
+    <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px" fxLayoutAlign="center center"
+      fxLayout.xsAlign="stretch" class="product-container" *ngFor="let product of allProducts.reverse()">
+      <button mat-mini-fab color="warn" class="delete" (click)="deleteDialog(product._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <div mat-card-image class="product-image"></div>
+      <mat-card-header>
+        <mat-card-title class="text">{{product.name}}</mat-card-title>
+        <mat-card-subtitle class="product-price">$ {{product.price}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text">{{product.description}}</p>
+      </mat-card-content>
+      <div class="product-stars">
+        <ngx-star-rating [id]="'rating'" [disabled]="true" [(ngModel)]="product.rating"></ngx-star-rating>
+      </div>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="viewProduct(product)">
+          <mat-icon>visibility</mat-icon> View
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-raised-button color="accent" (click)="editProduct(product)">
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+        <!--     <span class="example-spacer"></span>
+        <button mat-raised-button color="warn" (click)="deleteDialog(product._id)">
+          <mat-icon>delete</mat-icon> Delete
+        </button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="empty" *ngIf="!isLoading && allProducts && allProducts.length === 0">
+    <img src="../../../../assets/images/empty.svg">
+    <p>No products.</p>
+  </div>
+
+  <div *ngIf="isUnAuthorized" class="token">
+    <p class="auth-text">Please generate token to continue</p>
+    <button mat-raised-button color="accent" (click)="generateToken()">
+      <mat-icon>token</mat-icon> Generate Token
+    </button>
+  </div>
+</div>
+
+
+<!-- [ngStyle]="{'background-image': 'url('+imageUrl+ dataService.userDetails.UserIcon +')'}" -->

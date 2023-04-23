@@ -1,0 +1,49 @@
+<div class="container">
+  <mat-grid-list cols="1" rowHeight="{{rowHeight}}" gutterSize="16px">
+    <mat-grid-tile>
+      <form [formGroup]="productDetails" class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="name" placeholder="Shoe">
+          <mat-error
+            *ngIf="productDetails.controls['name']?.invalid && (productDetails.controls['name']?.dirty || productDetails.controls['name']?.touched)">
+            <span *ngIf="productDetails.controls['name']?.errors?.['required']">Name is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" placeholder="Blue nike shoe"></textarea>
+          <mat-error
+            *ngIf="productDetails.controls['description']?.invalid && (productDetails.controls['description']?.dirty || productDetails.controls['description']?.touched)">
+            <span *ngIf="productDetails.controls['description']?.errors?.['required']">Description is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill" floatLabel="always">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" class="example-right-align" placeholder="0">
+          <span matTextPrefix style="color: #fff">$&nbsp;</span>
+          <mat-error
+            *ngIf="productDetails.controls['price']?.invalid && (productDetails.controls['price']?.dirty || productDetails.controls['price']?.touched)">
+            <span *ngIf="productDetails.controls['price']?.errors?.['required']">Price is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="d-flex-center">
+          <button class="my-custom-button" mat-raised-button color="primary" [disabled]="!productDetails.valid"
+            (click)="addProduct()">
+            <div *ngIf="isLoading">
+              <mat-spinner strokeWidth="10"></mat-spinner>
+            </div>
+
+            <div *ngIf="!isLoading" class="d-flex-align-center">
+              <mat-icon>edit_document</mat-icon> <span class="example-spacer"></span> Update Product
+            </div>
+          </button>
+        </div>
+
+      </form>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

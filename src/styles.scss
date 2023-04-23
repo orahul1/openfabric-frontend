@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.d-flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.error-product-add {
+  --mdc-snackbar-supporting-text-color: #f44336;
+}
+
+.success-product-add {
+  --mdc-snackbar-supporting-text-color: #00b006;
+}
+
+/* Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 10px;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #303030;
+}

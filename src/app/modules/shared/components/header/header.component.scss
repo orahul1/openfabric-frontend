@@ -1,0 +1,17 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.header-home {
+  cursor: pointer;
+}
+
+
+.mat-toolbar {
+  position: fixed;
+  margin-bottom: 7rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
